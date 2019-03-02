@@ -7,12 +7,13 @@
         <link type="text/css" rel="stylesheet" href="css/css.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
 
         
-        <title>Pig Game</title>
+        <title>Play and learn</title>
     </head>
         <body class = "">
-          <div class = "">  
+          <div class = "container">  
             <button type="button" class="btn btn-primary">Primary</button>
             <button type="button" class="btn btn-secondary">Secondary</button>
             <button type="button" class="btn btn-success">Success</button>
@@ -23,9 +24,12 @@
             <button type="button" class="btn btn-dark">Dark</button>
             <button type="button" class="btn btn-link">Link</button>
           </div>
-          <div class = "">  
+          <div class = "container">  
             <form class="form-signin">
-                    <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                    <img class="mb-4" src="img/2.png" alt="" width="69" height="69">
+                    <img class="mb-4" src="img/3.png" alt="" width="69" height="69">
+                    <img class="mb-4" src="img/4.png" alt="" width="69" height="69">
+                    <img class="mb-4" src="img/5.png" alt="" width="69" height="69">
                     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
                     <label for="inputEmail" class="sr-only">Email address</label>
                     <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
@@ -40,6 +44,20 @@
                     <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
                 </form>
             </div>
+            <div class = "container">
+                <div class ="randomResult">
+                   Tutaj bedzie wynik 
+                </div>
+                <div class ="container imgList">
+                    <img class = "randomImg" src="" alt="" width="69" height="69"/>
+                    <img class = "randomImg" src="" alt="" width="69" height="69"/>
+                    <img class = "randomImg" src="" alt="" width="69" height="69"/>
+                    <img class = "randomImg" src="" alt="" width="69" height="69"/>
+                </div>
+                <button type= "submit" class ="btn btn-info" id = "randomRoll">Random</button>
+            </div>
+        
         </body>
+        <script src="js/random.js"></script>
     </html>
 
