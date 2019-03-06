@@ -7,6 +7,7 @@
         <link type="text/css" rel="stylesheet" href="css/css.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
         
 
         
@@ -25,7 +26,7 @@
             <button type="button" class="btn btn-link">Link</button>
           </div>
           <div class = "container">  
-            <form class="form-signin">
+            <form class="form-signin" style="display:none">
                     <img class="mb-4" src="img/2.png" alt="" width="69" height="69">
                     <img class="mb-4" src="img/3.png" alt="" width="69" height="69">
                     <img class="mb-4" src="img/4.png" alt="" width="69" height="69">
@@ -41,21 +42,64 @@
                     </label>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+                    <p class="mb-3 text-muted">&copy; 2017-2018</p>
                 </form>
             </div>
+            <div class = "progressList">
+                <div class = "progressBarWrapper wood">
+                    <button id ="cut" class = "work btn btn-primary">Cut</button> 
+                    <div class = "actualProgrssValue">0 %</div>   
+                    <div id="myProgress">
+                        <div id="myBar"></div>   
+                    </div>
+                    <div class = "totalScore">0</div>
+                    <img class="craftResource" src="img/wooditem.png" alt="" width="37" height="37">
+                    <button id = "wood" class = "collect btn btn-primary">collect</button>
+                </div>
+
+                <div class = "progressBarWrapper coal">
+                        <button id ="dig" class = "work btn btn-primary">Dig</button> 
+                        <div class = "actualProgrssValue">0 %</div>   
+                        <div id="myProgress">
+                            <div id="myBar"></div>   
+                        </div>
+                        <div class = "totalScore">0</div>
+                        <img class="craftResource" src="img/coalitem.png" alt="" width="37" height="37">
+                        <button id ="coal" class = "collect btn btn-primary">collect</button>
+                </div>
+               
+                <div class = "progressBarWrapper">
+                        <button id ="forge" class = "work btn btn-primary">Forge</button> 
+                        <div class = "actualProgrssValue">0 %</div>   
+                        <div id="myProgress">
+                            <div id="myBar"></div>   
+                        </div>
+                        <div class = "totalScore">0</div>
+                </div>
+            </div>
+            <div class = "inv">
+                    Actual inv
+                <p>Wood: <span id="inventoryWood">0</span></p>
+                <p>Coal: <span id="inventoryCoal">0</span></p>
+                <p>Armor: <span id="inventoryWood">0</span></p>
+            </div>
             <div class = "container">
+                <div class ="monster">
+                    <div id = "monsterBar">100</div>
+                </div>
                 <div class ="randomResult">
                    Tutaj bedzie wynik 
                 </div>
+                <button type= "submit" class ="btn btn-info" id = "randomRoll">Random</button>
                 <div class ="container imgList">
                     <img class = "randomImg" src="" alt="" width="69" height="69"/>
                     <img class = "randomImg" src="" alt="" width="69" height="69"/>
                     <img class = "randomImg" src="" alt="" width="69" height="69"/>
                     <img class = "randomImg" src="" alt="" width="69" height="69"/>
                 </div>
-                <button type= "submit" class ="btn btn-info" id = "randomRoll">Random</button>
+                
             </div>
+            <div id = "prog"></div>
         
         </body>
         <script src="js/random.js"></script>
