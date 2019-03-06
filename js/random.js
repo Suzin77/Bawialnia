@@ -22,8 +22,9 @@ const itemAttack = {
 
 const startConfig = {
   cutTime : 1,
-  digTime : 4
-  
+  digTime : 4,
+  forgeTime: 30,
+  enemyHP:100
 }
 
 function move(time) {
@@ -68,21 +69,25 @@ function attack(){
   let imageName = $(this).attr("src");
   let imageNumber = imageName.replace(/\D/g,'');
   //console.log(itemAttack[13]);
-  if(itemAttack[imageNumber]){
-    let actualHP = document.querySelector("#monsterBar").textContent;
-    document.querySelector("#monsterBar").textContent =actualHP -  itemAttack[imageNumber]; 
+  let actualHP = document.querySelector("#monsterBar").textContent;
+  if(itemAttack[imageNumber] && actualHP !== "Dead"){
+    document.querySelector("#monsterBar").textContent = actualHP - itemAttack[imageNumber];
+    actualHP = document.querySelector("#monsterBar").textContent;
+    if(actualHP<=0){
+      document.querySelector("#monsterBar").textContent = "Dead";
+    }
   }      
   let randomImgList = document.querySelectorAll(".randomImg");
-    console.log(randomImgList);
     for(let i = 0; i<randomImgList.length; i++){
         randomImgList[i].setAttribute("src", "img/"+random(1,20)+".png");
     }        
-    
-
 }
 $(document).on("click", ".collect", collectFunction);
 $(document).on("click", ".randomImg", attack);
-$(document).on("click", ".work",function (){move.call(this, startConfig.cutTime)}); 
+$(document).on("click", ".work",function (){move.call(this, startConfig.cutTime)});
+document.getElementById("reset").addEventListener("click", function(){
+  document.querySelector("#monsterBar").textContent = startConfig.enemyHP;
+}); 
 
 
 
