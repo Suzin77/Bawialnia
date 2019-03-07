@@ -57,7 +57,7 @@ body {
 
 
 .progressBarWrapper{
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   padding-top: 1rem;
   display: flex;
@@ -86,7 +86,7 @@ body {
 }
 
 #myProgress {
-  width:90%;
+  width:70%;
   background-color: grey;
   margin: 0 auto;
   text-align: center;
@@ -94,7 +94,9 @@ body {
 
 #myBar {
   width: 0%;
-  height: 37px  ;
+  height: 37px;
+  margin:0;
+  padding:0; 
   background-color: green;
 }
 
@@ -109,7 +111,17 @@ body {
 .inv {
   display: flex;
   justify-content: center;
-  
 
 }
 
+.work {
+  width: 6em;
+}
+
+.collect{
+  margin-left: 0.5em
+}
+
+#myCanvas {
+  margin-left: 25%;
+}

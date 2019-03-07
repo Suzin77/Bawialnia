@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="css/css.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+        
+
+        
+        <title>Canvas</title>
+    </head>
+    <body>
+            <canvas id="myCanvas" width="800" height="400"
+            style="border:1px solid #d3d3d3;">
+            Your browser does not support the canvas element.
+            </canvas>
+    </body>
+    <script >
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            const width = canvas.width;
+        
+            let a = {x:0, y:400};
+            let b = {x:400, y:0};
+            let c = {x:800 , y:400}
+            
+            let start = {x:0, y:0}; // startowy punk
+            let target = {x:400, y:400}; //docelowy punk
+            let step = 0.5;
+            let stop ={x:0 , y:0}; // punkt zatrymania w pol drogi. wg stop.
+            drawStartPoints();
+            //choseTargetPoint();
+            //console.log(target);
+
+            for(let n=0;n<1000; n++){
+                ctx.rect(start.x,start.y,1,1);
+                ctx.stroke();
+                choseTargetPoint();
+                calculateStep();
+                ctx.rect(stop.x,stop.y,1,1);
+                start.x = stop.x;
+                start.y = stop.y;
+                //start.x = start.x + ((target.x -start.x)/2); // x rosnacy 
+                //start.y = start.y + (target.y - start.y)/2; // y rosnacy 
+                //start.x = start.x - (start.x - taget.x)/2;
+                //start.y = start.y - (start.y - target.y)/2
+                
+                //console.log(stop);
+            }
+            //console.log(stop);
+            function choseTargetPoint(){
+                let targetTest = Math.floor(Math.random()*3+1);
+                switch (targetTest) {
+                    case 1:
+                        target = a;
+                        break;
+                    case 2:
+                        target =b;
+                        break;
+                    case 3:
+                        target = c;
+                        break;    
+                    default:
+                        break;
+                }               
+            }
+ 
+            function drawStartPoints(){
+                ctx.rect(a.x,a.y, 1,1);
+                ctx.rect(b.x,b.y, 1,1);
+                ctx.rect(c.x,c.y, 1,1);
+                ctx.stroke();
+            }
+            
+            function drawPoint(){
+                for (let i =0; i<7;i++){
+                    stop.x = start.x + ((target.x - start.x)/2);
+                    stop.y = stop.y + ((target.y - start.y)/2);
+                    ctx.rect(start.x,start.y,1,1);
+                    ctx.rect(stop.x,stop.y,1,1);
+                    ctx.stroke();
+                }
+            } 
+            function calculateStep(){
+                if (target.x > start.x ){ stop.x = start.x + ((target.x- start.x)/2)}
+                else {stop.x = start.x -((start.x - target.x)/2)}
+
+                if (target.y > start.y){stop.y = start.y + ((target.y - start.y)/2)}
+                else {stop.y = start.y - ((start.y - target.y)/2)}
+            }
+            //ctx.beginPath();
+            //ctx.arc(95,50,40,0,2*Math.PI);
+            //ctx.stroke();
+            //ctx.beginPath();
+            //ctx.arc(95,50,40,0,2*Math.PI);
+            //ctx.stroke();
+            //ctx.fill();
+            ctx.stroke();
+            //ctx.rect(a.x,a.y, 1,1);
+            //ctx.rect(b.x,b.y, 1,1);
+            //ctx.rect(c.x,c.y, 1,1);
+            //ctx.stroke();
+            //start.x = stop.x;
+           // start.y = stop.y;
+
+    </script>
+</html>
