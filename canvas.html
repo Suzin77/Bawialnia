@@ -14,7 +14,7 @@
         <title>Canvas</title>
     </head>
     <body>
-            <canvas id="myCanvas" width="800" height="400"
+            <canvas id="myCanvas" width="800" height="600"
             style="border:1px solid #d3d3d3;">
             Your browser does not support the canvas element.
             </canvas>
@@ -23,35 +23,36 @@
             var canvas = document.getElementById("myCanvas");
             var ctx = canvas.getContext("2d");
             const width = canvas.width;
-        
-            let a = {x:0, y:400};
-            let b = {x:400, y:0};
-            let c = {x:800 , y:400}
+            const height = canvas.height;
+            let a = {x:0, y:canvas.height};
+            let b = {x:canvas.width/2, y:0};
+            let c = {x:canvas.width , y:canvas.height}
+            let d = {x:0, y:0}
             
             let start = {x:0, y:0}; // startowy punk
             let target = {x:400, y:400}; //docelowy punk
             let step = 0.5;
             let stop ={x:0 , y:0}; // punkt zatrymania w pol drogi. wg stop.
             drawStartPoints();
-            //choseTargetPoint();
-            //console.log(target);
 
-            for(let n=0;n<1000; n++){
-                ctx.rect(start.x,start.y,1,1);
-                ctx.stroke();
+            let t1 = Date.now();
+            //for(let m = 0 ;  m<canvas.width; m++){
+            //    b.x = m;
+            
+            for(let n=0;n<40000; n++){
+                ctx.rect(start.x,start.y,1,1);               
                 choseTargetPoint();
                 calculateStep();
                 ctx.rect(stop.x,stop.y,1,1);
+                //ctx.stroke();
                 start.x = stop.x;
-                start.y = stop.y;
-                //start.x = start.x + ((target.x -start.x)/2); // x rosnacy 
-                //start.y = start.y + (target.y - start.y)/2; // y rosnacy 
-                //start.x = start.x - (start.x - taget.x)/2;
-                //start.y = start.y - (start.y - target.y)/2
-                
-                //console.log(stop);
+                start.y = stop.y;                               
             }
-            //console.log(stop);
+            ctx.stroke();
+            
+        //}
+            console.log(Date.now()- t1);
+
             function choseTargetPoint(){
                 let targetTest = Math.floor(Math.random()*3+1);
                 switch (targetTest) {
@@ -63,7 +64,10 @@
                         break;
                     case 3:
                         target = c;
-                        break;    
+                        break;
+                    case 4:
+                        target = d;
+                        break;         
                     default:
                         break;
                 }               
@@ -78,34 +82,23 @@
             
             function drawPoint(){
                 for (let i =0; i<7;i++){
-                    stop.x = start.x + ((target.x - start.x)/2);
-                    stop.y = stop.y + ((target.y - start.y)/2);
+                    stop.x = start.x + ((target.x - start.x)*step);
+                    stop.y = stop.y + ((target.y - start.y)*step);
                     ctx.rect(start.x,start.y,1,1);
                     ctx.rect(stop.x,stop.y,1,1);
                     ctx.stroke();
                 }
             } 
-            function calculateStep(){
-                if (target.x > start.x ){ stop.x = start.x + ((target.x- start.x)/2)}
-                else {stop.x = start.x -((start.x - target.x)/2)}
 
-                if (target.y > start.y){stop.y = start.y + ((target.y - start.y)/2)}
-                else {stop.y = start.y - ((start.y - target.y)/2)}
+            function calculateStep(){
+                if (target.x > start.x ){ stop.x = start.x + ((target.x- start.x)*step)}
+                else {stop.x = start.x -((start.x - target.x)*step)}
+
+                if (target.y > start.y){stop.y = start.y + ((target.y - start.y)*step)}
+                else {stop.y = start.y - ((start.y - target.y)*step)}
             }
-            //ctx.beginPath();
-            //ctx.arc(95,50,40,0,2*Math.PI);
-            //ctx.stroke();
-            //ctx.beginPath();
-            //ctx.arc(95,50,40,0,2*Math.PI);
-            //ctx.stroke();
-            //ctx.fill();
             ctx.stroke();
-            //ctx.rect(a.x,a.y, 1,1);
-            //ctx.rect(b.x,b.y, 1,1);
-            //ctx.rect(c.x,c.y, 1,1);
-            //ctx.stroke();
-            //start.x = stop.x;
-           // start.y = stop.y;
+           
 
     </script>
 </html>
