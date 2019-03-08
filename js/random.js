@@ -10,8 +10,6 @@ $(".document").ready(function(){
             randomImgList[i].setAttribute("src", "img/"+random(1,20)+".png");
         }        
     });
-
-
 });
 
 const itemAttack = {
@@ -84,16 +82,15 @@ function attack(){
 }
 $(document).on("click", ".collect", collectFunction);
 $(document).on("click", ".randomImg", attack);
-$(document).on("click", ".work",function (){move.call(this, startConfig.cutTime)});
+//$(document).on("click", ".work",function (){move.call(this, startConfig.cutTime)});
+
 document.getElementById("reset").addEventListener("click", function(){
   document.querySelector("#monsterBar").textContent = startConfig.enemyHP;
 }); 
 
-
-
-//document.querySelector("#cut").addEventListener("click", function (){move.call(this, startConfig.cutTime)}, false);
-//document.querySelector("#dig").addEventListener("click", function (){move.call(this, startConfig.digTime)}, false);
-//document.querySelector("#forge").addEventListener("click", function (){move.call(this, 500)}, false);
+document.querySelector("#cut").addEventListener("click", function (){move.call(this, startConfig.cutTime)}, false);
+document.querySelector("#dig").addEventListener("click", function (){move.call(this, startConfig.digTime)}, false);
+document.querySelector("#forge").addEventListener("click", function (){move.call(this, startConfig.forgeTime)}, false);
 
 //document.querySelector(".collect").addEventListener("click", collectFunction, false);
 
