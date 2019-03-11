@@ -19,11 +19,17 @@
             Your browser does not support the canvas element.
             </canvas>
     </body>
-    <script >
+    <script>
             var canvas = document.getElementById("myCanvas");
             var ctx = canvas.getContext("2d");
             const width = canvas.width;
             const height = canvas.height;
+
+            var requestAnimationFrame = window.requestAnimationFrame || 
+                            window.mozRequestAnimationFrame || 
+                            window.webkitRequestAnimationFrame || 
+                            window.msRequestAnimationFrame;
+
             let a = {x:0, y:canvas.height};
             let b = {x:canvas.width/2, y:0};
             let c = {x:canvas.width , y:canvas.height}
@@ -36,22 +42,34 @@
             drawStartPoints();
 
             let t1 = Date.now();
-            //for(let m = 0 ;  m<canvas.width; m++){
-            //    b.x = m;
-            
-            for(let n=0;n<40000; n++){
-                ctx.rect(start.x,start.y,1,1);               
-                choseTargetPoint();
-                calculateStep();
-                ctx.rect(stop.x,stop.y,1,1);
-                //ctx.stroke();
-                start.x = stop.x;
-                start.y = stop.y;                               
-            }
-            ctx.stroke();
-            
-        //}
+            render();
             console.log(Date.now()- t1);
+
+            // setInterval(function(){ 
+            //     debugger;
+            //     ctx.clearRect(0,0, canvas.width, canvas.height);
+            //     render();
+                
+            // }, 25);
+
+            function render(){    
+                for(let n=0;n<20000; n++){
+                    ctx.rect(start.x,start.y,1,1);               
+                    choseTargetPoint();
+                    calculateStep();
+                    ctx.rect(stop.x,stop.y,1,1);
+                    //ctx.stroke();
+                    start.x = stop.x;
+                    start.y = stop.y;
+                    //b.x += 1;                               
+                }
+                ctx.stroke();
+                //b.x += 1;                               
+                
+                //requestAnimationFrame(render);
+                //ctx.clearRect(0,0, canvas.width, canvas.height);
+
+            }    
 
             function choseTargetPoint(){
                 let targetTest = Math.floor(Math.random()*3+1);
@@ -97,7 +115,6 @@
                 if (target.y > start.y){stop.y = start.y + ((target.y - start.y)*step)}
                 else {stop.y = start.y - ((start.y - target.y)*step)}
             }
-            ctx.stroke();
            
 
     </script>
