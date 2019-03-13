@@ -25,6 +25,14 @@ const startConfig = {
   enemyHP:100
 }
 
+const gameState = {
+  session_id: 0,
+  player_name: "",
+  wood_amount: 0,
+  iron_amount: 0,
+  sword_amount: 0
+}
+
 function move(time) {
     let parentElement = $(this)[0].parentElement;
     var elem = parentElement.querySelector("#myBar");
