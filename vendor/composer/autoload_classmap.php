@@ -6,6 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'controller\\controller' => $baseDir . '/app/controller/controller.php',
+    'controller\\filtr' => $baseDir . '/app/controller/filtr.php',
+    'game\\controller' => $baseDir . '/app/game/gameController.php',
+    'game\\game' => $baseDir . '/app/game/game.php',
+    'game\\gameConfig' => $baseDir . '/app/game/gameConfig.php',
     'helpers\\cookieHelper' => $baseDir . '/app/helpers/cookieHelper.php',
     'models\\real\\sessionMenago' => $baseDir . '/app/models/real/sessionMenago.php',
     'models\\virtual\\virtualPost' => $baseDir . '/app/models/virtual/virtualPost.php',

@@ -15,6 +15,14 @@ class ComposerStaticInitba9c3668ccbd4922eab32fe1619a7d85
         array (
             'helpers\\' => 8,
         ),
+        'g' => 
+        array (
+            'game\\' => 5,
+        ),
+        'c' => 
+        array (
+            'controller\\' => 11,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -26,9 +34,22 @@ class ComposerStaticInitba9c3668ccbd4922eab32fe1619a7d85
         array (
             0 => __DIR__ . '/../..' . '/app/helpers',
         ),
+        'game\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/game',
+        ),
+        'controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/controller',
+        ),
     );
 
     public static $classMap = array (
+        'controller\\controller' => __DIR__ . '/../..' . '/app/controller/controller.php',
+        'controller\\filtr' => __DIR__ . '/../..' . '/app/controller/filtr.php',
+        'game\\controller' => __DIR__ . '/../..' . '/app/game/gameController.php',
+        'game\\game' => __DIR__ . '/../..' . '/app/game/game.php',
+        'game\\gameConfig' => __DIR__ . '/../..' . '/app/game/gameConfig.php',
         'helpers\\cookieHelper' => __DIR__ . '/../..' . '/app/helpers/cookieHelper.php',
         'models\\real\\sessionMenago' => __DIR__ . '/../..' . '/app/models/real/sessionMenago.php',
         'models\\virtual\\virtualPost' => __DIR__ . '/../..' . '/app/models/virtual/virtualPost.php',

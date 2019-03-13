@@ -2,7 +2,9 @@
     "autoload":{
         "psr-4":{
             "models\\":"app/models",
-            "helpers\\":"app/helpers"
+            "helpers\\":"app/helpers",
+            "game\\":"app/game",
+            "controller\\":"app/controller"
         }
     }
 }
