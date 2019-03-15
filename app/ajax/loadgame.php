@@ -9,10 +9,10 @@ use helpers\cookieHelper as cookieHelper;
 include_once('../../vendor/autoload.php');
 include_once('../../app/config/config.php');
 
-$game = new game();
-$gameData = $game->loadGame();
-$jsonResponse = json_encode($gameData);
-header('Content-Type: application/json');
-echo $jsonResponse;
-//$gameConfig = new gameConfig();
-//var_dump($json);
+if(isset($_POST['player_name'])){
+    $game = new game();
+    $gameData = $game->loadGame($_POST['player_name']);//need to be validate. add sanitation 
+    $jsonResponse = json_encode($gameData);
+    header('Content-Type: application/json');
+    echo $jsonResponse;
+}

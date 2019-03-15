@@ -17,9 +17,9 @@ class filtr extends controller
     {
         $id = rand(1,200);
         $wood = rand(1,100);
-        $iron = rand(1,100);
+        $coal = rand(1,100);
         $sword = rand(1,100);
-        $sql = "INSERT INTO player_data (session_id, player_name, wood_amount, iron_amount, sword_amount) VALUES($id,'testname',$wood,$iron,$sword )";
+        $sql = "INSERT INTO player_data (session_id, player_name, wood_amount, coal_amount, sword_amount) VALUES($id,'testname',$wood,$coal,$sword )";
         $query =  $this->db->prepare($sql);
         $query->execute();
     }

@@ -9,12 +9,11 @@ use helpers\cookieHelper as cookieHelper;
 include_once('../../vendor/autoload.php');
 include_once('../../app/config/config.php');
 
-// $game = new game();
-// $gameData = $game->loadGame();
-// $jsonResponse = json_encode($gameData);
-$jsonResponse = json_encode($_POST);
-header('Content-Type: application/json');
-echo $jsonResponse;
-
-//$gameConfig = new gameConfig();
-//var_dump($json);
+if(isset($_POST['player_name'])){
+    $game = new game();
+    $game->setPlayerData($_POST);
+    $saveReturn = $game->saveGame($game->playerData);
+    $jsonResponse = json_encode($saveReturn);
+    header('Content-Type: application/json');
+    echo $jsonResponse;
+}
