@@ -1,0 +1,10 @@
+{
+    "autoload":{
+        "psr-4":{
+            "models\\":"app/models",
+            "helpers\\":"app/helpers",
+            "game\\":"app/game",
+            "controller\\":"app/controller"
+        }
+    }
+}
