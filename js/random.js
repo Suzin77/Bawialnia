@@ -1,54 +1,3 @@
-
-function random (min,max){
-    return Math.floor(Math.random() * (max-min+1) + min);
-}
-
-$(".document").ready(function(){
-    $("#randomRoll").on("click", function(){        
-        let randomImgList = document.querySelectorAll(".randomImg");
-        for(let i = 0; i<randomImgList.length; i++){
-            randomImgList[i].setAttribute("src", "img/"+random(1,20)+".png");
-        }        
-    });
-
-    $("#loadGameState").click(function(){
-      $.ajax({
-        type: 'POST',
-        url: "app/ajax/loadgame.php",
-        data:{
-          player_name: gameState.player_name
-        },
-        success: function(result){
-          console.log(result);
-          gameState.wood_amount = result[0].wood_amount;
-          gameState.coal_amount = result[0].coal_amount;
-          gameState.sword_amount = result[0].sword_amount;
-          //$("#div1").html(result);
-          //console.log(gameState);
-          document.querySelector("#inventoryWood").textContent = gameState.wood_amount;
-          document.querySelector("#inventoryCoal").textContent = gameState.coal_amount;
-          document.querySelector("#inventorySword").textContent = gameState.sword_amount;
-      }});
-    });
-
-    $("#saveGameState").click(function(){
-      $.ajax({
-        type: 'POST',
-        url: 'app/ajax/savegame.php',
-        data: { 
-            player_name: gameState.player_name,
-            wood: gameState.wood_amount,
-            coal: gameState.coal_amount,
-            sword: gameState.sword_amount 
-        },
-        success: function(msg){
-            console.log(msg);
-        }
-      });
-        
-    });
-});
-
 const itemAttack = {
   '1': 20,
   '11' : 10,
@@ -70,6 +19,54 @@ const gameState = {
   sword_amount: 0
 }
 
+function random (min,max){
+    return Math.floor(Math.random() * (max-min+1) + min);
+}
+
+$(".document").ready(function(){
+    $("#randomRoll").on("click", function(){        
+        let randomImgList = document.querySelectorAll(".randomImg");
+        for(let i = 0; i<randomImgList.length; i++){
+            randomImgList[i].setAttribute("src", "img/"+random(1,20)+".png");
+        }        
+    });
+
+    $("#loadGameState").click(function(){
+      $.ajax({
+        type: 'POST',
+        url: "app/ajax/loadgame.php",
+        data:{
+          player_name: gameState.player_name
+        },
+        success: function(result){
+          //console.log(result);
+          gameState.wood_amount = result[0].wood_amount;
+          gameState.coal_amount = result[0].coal_amount;
+          gameState.sword_amount = result[0].sword_amount;
+          document.querySelector("#inventoryWood").textContent = gameState.wood_amount;
+          document.querySelector("#inventoryCoal").textContent = gameState.coal_amount;
+          document.querySelector("#inventorySword").textContent = gameState.sword_amount;
+      }});
+    });
+
+    $("#saveGameState").click(function(){
+      $.ajax({
+        type: 'POST',
+        url: 'app/ajax/savegame.php',
+        data: { 
+            player_name: gameState.player_name,
+            wood: gameState.wood_amount,
+            coal: gameState.coal_amount,
+            sword: gameState.sword_amount 
+        },
+        success: function(msg){
+            //console.log(msg);
+        }
+      });
+        
+    });
+});
+
 function move(time) {
     let parentElement = $(this)[0].parentElement;
     var elem = parentElement.querySelector("#myBar");
@@ -90,10 +87,9 @@ function move(time) {
         width++; 
         elem.style.width = width + '%';
         procentValue.innerHTML = width*1 + ' %'; 
-      }
-     
+      }    
     }
-  }
+}
 
 function collectFunction(){
   let resourceName = this.id;
@@ -106,13 +102,11 @@ function collectFunction(){
   document.querySelector("#inventory"+resourceName).textContent = actualScore*1 + actualInventory*1;
   gameState[this.id+'_amount'] = actualScore*1 + actualInventory*1;
   actualScoreElement.textContent = 0;
-  //document.querySelector(".inventoryWood").innerHTML = `<p>Wood <span>${actualScore}</span></p>`;
 }
 
 function attack(){
   let imageName = $(this).attr("src");
   let imageNumber = imageName.replace(/\D/g,'');
-  //console.log(itemAttack[13]);
   let actualHP = document.querySelector("#monsterBar").textContent;
   if(itemAttack[imageNumber] && actualHP !== "Dead"){
     document.querySelector("#monsterBar").textContent = actualHP - itemAttack[imageNumber];
@@ -132,18 +126,8 @@ $(document).on("click", ".randomImg", attack);
 
 document.getElementById("reset").addEventListener("click", function(){
   document.querySelector("#monsterBar").textContent = startConfig.enemyHP;
-}); 
-
-document.querySelector("#cut").addEventListener("click", function (){move.call(this, startConfig.cutTime)}, false);
+});
 document.querySelector("#dig").addEventListener("click", function (){move.call(this, startConfig.digTime)}, false);
 document.querySelector("#forge").addEventListener("click", function (){move.call(this, startConfig.forgeTime)}, false);
-
+document.querySelector("#cut").addEventListener("click", function () { move.call(this, startConfig.cutTime); }, false);
 //document.querySelector(".collect").addEventListener("click", collectFunction, false);
-
-//$("#progressbar").progressbar({value: 57});
-
-
-
-
-
-

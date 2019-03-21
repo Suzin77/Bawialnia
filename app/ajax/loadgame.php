@@ -11,8 +11,16 @@ include_once('../../app/config/config.php');
 
 if(isset($_POST['player_name'])){
     $game = new game();
-    $gameData = $game->loadGame($_POST['player_name']);//need to be validate. add sanitation 
+    $gameData = $game->loadGame($_POST['player_name']);//need to be validate.
     $jsonResponse = json_encode($gameData);
     header('Content-Type: application/json');
     echo $jsonResponse;
+} else {
+    $response = [
+        "status"=>"error",
+        "desc"=>"nie udalo sie polaczyc"    
+    ];
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
 }

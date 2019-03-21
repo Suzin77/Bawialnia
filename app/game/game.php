@@ -44,9 +44,10 @@ class game extends gameController
 
     public function updateSaveGame($playerData)
     {
-        //var_dump($playerData);
         $sql = "UPDATE player_data 
-                SET wood_amount= :wood_amount, coal_amount = :coal_amount, sword_amount = :sword_amount 
+                SET wood_amount= :wood_amount, 
+                    coal_amount = :coal_amount,
+                    sword_amount = :sword_amount 
                 WHERE player_name = :player_name";
 
         $query= $this->db->prepare($sql);
